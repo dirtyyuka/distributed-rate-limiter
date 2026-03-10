@@ -1,4 +1,5 @@
 package com.ratelimiter.distributed.controller;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +16,10 @@ public class RateLimiterController {
     public RateLimiterController(RateLimiterService rateLimiterService) {
         this.rateLimiterService = rateLimiterService;
     }
-    
+
     @GetMapping("/api")
     public ResponseEntity<?> apiEndPoint(@RequestParam String userId) {
-        if (rateLimiterService.isAllowed(userId)) {
+        if (rateLimiterService.validateRequest(userId)) {
             return ResponseEntity.ok("Request successful");
         } else {
             return ResponseEntity.status(429).body("Too Many Requests");
