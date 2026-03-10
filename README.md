@@ -42,7 +42,7 @@ flowchart LR
     C["Window 2<br>12:01:00 – 12:01:59"] -->|5 requests at 12:01:00| Server
     Server -->|Counter reset at boundary| D["Burst: 10 requests<br>in ~1–2 seconds"]
 
-    style D fill:#ffcccc,stroke:#c00,stroke-width:2px
+    style D stroke:#ff4444,stroke-width:4px,stroke-dasharray: 5 5
 ```
 
 ### Token Bucket
