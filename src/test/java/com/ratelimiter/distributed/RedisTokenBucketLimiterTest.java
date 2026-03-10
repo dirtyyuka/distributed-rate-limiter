@@ -8,9 +8,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -19,7 +21,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import com.ratelimiter.distributed.limiter.RedisSlidingWindowLimiter;
-import com.ratelimiter.distributed.limiter.RedisTokenBucketLimiter;
 
 @SpringBootTest
 @Testcontainers
@@ -37,6 +38,14 @@ public class RedisTokenBucketLimiterTest {
     
     @Autowired
     private RedisSlidingWindowLimiter limiter;
+
+    @Autowired 
+    private StringRedisTemplate redisTemplate;
+
+    @BeforeEach
+    void clearRedis() {
+        redisTemplate.getConnectionFactory().getConnection().serverCommands().flushAll();
+    }
 
     @Test
     void shouldAllowInitialRequestsAndBlockFollowing() {
