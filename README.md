@@ -76,7 +76,7 @@ sequenceDiagram
     %% --- Now bucket is empty ---
     Client->>+RateLimiter: Request #11 (t=1s)<br>Burst used up
     RateLimiter-->>-Client: Reject<br>(0 tokens left)
-    Note right of RateLimiter: No tokens → throttle
+    Note over RateLimiter: No tokens → throttle
 
     %% --- Time passes → tokens refill ---
     Note over RateLimiter,t=12s: 12 seconds pass → +1 token
