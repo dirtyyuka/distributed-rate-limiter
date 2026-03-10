@@ -177,6 +177,7 @@ void shouldNotExceedCapacityUnderConcurrency() throws InterruptedException {
 
 ### Contact
 Mayank Joshi - @dirtyyuka - mayankjoshi455@gmail.com
+<br>
 Project link: https://github.com/dirtyyuka/distributed-rate-limiter
 
 
