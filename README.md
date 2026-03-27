@@ -128,7 +128,7 @@ If you're interested in running these tests yourself, you can run the following 
 ./mvnw test
 ```
 
-### Integrated testing with testcontainers
+### 1. Integrated testing with testcontainers
 This test uses Testcontainers to spin up a localized Redis instance during the build phase. This ensures that the lua scripts and redis interactions are tested against a real server rather than mock.
 
 ```java
@@ -149,7 +149,7 @@ void shouldAllowInitialRequestsAndBlockFollowing() {
 }
 ```
 
-### Stress test
+### 2. Stress test
 This is another similar test, though this uses a threadpool to simulate 1000 simultaneous requests on 100 threads to properly ensure "Check-and-set" atomicity.
 
 ```java
